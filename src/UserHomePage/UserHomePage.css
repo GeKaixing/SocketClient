@@ -1,0 +1,15 @@
+.userhomepage{
+    margin: auto;
+    width: 600px;
+    height: auto;
+    background-color: rgb(194, 96, 96);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-flow:column;
+}
+.userhistory{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+}
