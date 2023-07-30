@@ -41,7 +41,7 @@ export default function Routers() {
         {
             onSuccess: (data) => {
               
-                console.log(data);
+                /* console.log(data); */
             }
         },
         {

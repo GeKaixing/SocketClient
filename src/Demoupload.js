@@ -13,7 +13,7 @@ export default function Demoupload() {
 
     }
     const handleChanges = (e) => {
-        const url = 'http://127.0.0.1:8000/upload'
+        const url = 'http://127.0.0.1:4000/uploadformdata'
         axios.post(`${url}`, formData)
             .then(response => {
               console.log(response.data);

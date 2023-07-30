@@ -13,6 +13,7 @@ import { QueryClientProvider, QueryClient } from 'react-query'
 //引入usequery开放工具
 import { ReactQueryDevtools } from 'react-query/devtools'
 import Demo from './Demo';
+import UploadDemo from './UploadDemo';
 import Replycontent from './content/Replycontent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // 在入口文件配置usequery
@@ -25,10 +26,11 @@ root.render(
             <QueryClientProvider client={queryClient}>
                 {/*<Login></Login> */}
                 <App></App>
-              {/*   <Demoupload></Demoupload> */}
+              {/*  <UploadDemo></UploadDemo> */}
                 {/* <Replycontent></Replycontent> */}
              {/*    <Demo></Demo> */}
                 {/* <Query></Query> */}
+                  {/*  <Demoupload></Demoupload> */}
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </BrowserRouter>

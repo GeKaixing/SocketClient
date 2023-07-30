@@ -77,7 +77,7 @@ export default function Login({ getvalue, refetch }) {
         // 回退
         navigate(-1)
     } */
-    console.log(responsedata);
+    /* console.log(responsedata); */
     // true表示的登陆成功
     // false表示登录失败，提示账号密码是否错误或提示是否注册
     // use query编写 

@@ -17,7 +17,7 @@ function ImageUploadForm() {
       // 添加selectedFile到formdata实例
       formData.append('file', selectedFile);
       // 发送到后端的特定接口
-      fetch('http://127.0.0.1:8000/upload', {
+      fetch('http://127.0.0.1:4000/uploadformdata', {
         method: 'POST',
         body: formData,
       })
