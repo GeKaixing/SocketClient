@@ -5,7 +5,6 @@ import { useLocation } from 'react-router-dom';
 import Articledata from './Articledata'
 export default function Hompage({userarticles}) {
   const {pathname}=useLocation()
-  console.log(pathname);
   const [articles, setarticles] = useState([])
   const { isSuccess } = useQuery("articles", async () => {
     const response = await axios.get('http://127.0.0.1:4000/retrievearticle')
@@ -31,7 +30,7 @@ export default function Hompage({userarticles}) {
       }
       getarticles()
     }, []) */
-  console.log(articles);
+    console.log(articles);
   return (
     <div>
 

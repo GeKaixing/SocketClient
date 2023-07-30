@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState} from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Home from '../components/Home'
 import About from '../components/About'
@@ -13,6 +13,7 @@ import Articledata from '../homepage/Articledata'
 import { useQuery, useQueryClient } from 'react-query'
 import axios from 'axios'
 import UserHomePage from '../UserHomePage/UserHomePage'
+import style from "./Routers.module.css"
 export default function Routers() {
     const [getuser, setuser] = useState({
         name:'',
@@ -63,10 +64,8 @@ export default function Routers() {
                 </Route> 
                 <Route path='/login' element={<Login refetch={refetch} getvalue={getloginId} />}></Route>
                 <Route path='/signup' element={<Signup getvalue={getloginId} />}></Route>
-                <Route path='/homepage/:id/:id' element={<Content getid={getuserid} username={username}></Content>}></Route>
-
+                <Route path='/homepage/:id' element={<Content getid={getuserid} username={username}></Content>}></Route>
             </Routes>
-
         </>
 
     )

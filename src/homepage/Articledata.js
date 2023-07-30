@@ -1,8 +1,11 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
-import { Link ,Routes, Route} from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, Routes, Route, useNavigate } from 'react-router-dom'
 import { useQueryClient } from 'react-query'
 import './Homepage.css'
+import style from './Articledata.module.css'
+import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
+import TestContext from '../store/TestContext'
 export default function Articledata(props) {
     // const aa = comment.map((item) => {
     //     <Link key={item.id}>{item.comment}</Link>
@@ -10,6 +13,7 @@ export default function Articledata(props) {
     const [liked, setlike] = useState(props.like)
     const [first, setfirst] = useState(true)
     const [firststyle, setfirststyle] = useState(false)
+    const { setshowcommenthandler } = useContext(TestContext)
     /* 抽出来成为一个组件 
     useEffect(() => {
         const getarticles = async () => {
@@ -35,7 +39,9 @@ export default function Articledata(props) {
         getcomment()
     }, []) */
     const queryClient = useQueryClient()
-    const likehandle = () => {
+    const likehandle = (e) => {
+        e.stopPropagation()
+
         setlike((liked) => liked + 1)
         setfirst(false)
         axios.post(
@@ -51,7 +57,8 @@ export default function Articledata(props) {
             })
         queryClient.invalidateQueries("articles")
     }
-    const offlikehandle = () => {
+    const offlikehandle = (e) => {
+        e.stopPropagation()
         setlike((liked) => liked - 1)
         axios.post(
             `http://127.0.0.1:4000/updataarticlelike/${props.id}`,
@@ -66,32 +73,39 @@ export default function Articledata(props) {
             })
         queryClient.invalidateQueries("articles")
     }
+    const navigate = useNavigate()
+    const navgatehandle = (e) => {
+        e.stopPropagation()
+        navigate(`homepage/${props.id}`);
+      };
     return (
         <>
             {
                 props.isSuccess &&
-                <div className='messagebigbox'>
-                    <div className='messagebox'>
-                        <div className='thisshowname'>
-                            <Link>{props.name}</Link>
+                <div className={style.messagebigbox} onClick={navgatehandle}>
+                    <div className={style.messagebox}>
+                        <div className={style.thisshowname} onClick={e=>e.stopPropagation()}>
+                            <div className={style.handimg} ></div>
+                            <Link className={style.handname}>{props.name}</Link>
                         </div>
-                        <div className='thisshowtheme'>
+                        <div className={style.thisshowtheme} onClick={e=>e.stopPropagation()}>
                             <Link>{props.contenttheme}</Link>
                         </div>
-                        <div className='thisshowcontent'>
+                        <div className={style.thisshowcontent}>
                             {props.content}
                         </div>
-                        <div className='thisshowbottom'>
+                        <div className={style.thisshowbottom} >
                             <div>
-                                <Link className={firststyle ? "redlike" : "whitelike"} onClick={first ? likehandle : offlikehandle}>点赞{props.like}</Link>
+                                <Link id='like' className={firststyle ? style.redlike : style.whitelike} onClick={first ? likehandle : offlikehandle}><LikeFilled />{props.like}</Link>
                             </div>
                             <div>
-                                <Link to={`homepage/${props.content}/${props.id}`}>评论</Link>
+                                <Link onClick={setshowcommenthandler} className={style.MessageFilled} ><MessageFilled />评论</Link>
                             </div>
-                            <div>
-                                收藏
+                            <div className={style.star} onClick={e=>e.stopPropagation()}>
+                                <StarFilled />收藏
                             </div>
-                            <div>
+                            <div className={style.share} onClick={(e)=>e.stopPropagation()}>
+                                <RocketFilled />
                                 分享
                             </div>
                         </div>

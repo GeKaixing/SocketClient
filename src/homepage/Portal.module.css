@@ -1,0 +1,90 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99999;
+    
+    background:rgba(128,128,128,128,0.5);
+    display: flex;
+    justify-content: center;
+
+}
+
+
+.deomcolor {
+   
+    background-color: beige;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+}
+
+
+.uploading {
+    /* 光标类型 */
+    cursor: pointer;
+    text-align: center;
+    width: 150px;
+    height: 50px;
+    background-color: #f6f6f6;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.uploading:hover {
+    background-color: #d8d8d8;
+}
+
+.useruploading {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 600px;
+}
+
+.showname {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 5px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid black;
+    width: 600px;
+}
+
+.handimg {
+    width: 2.5rem;
+    height: 2.5rem;
+    background-color: rgb(85, 37, 95);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.handname {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    color: #000;
+}
+
+.uptext {
+    margin-top: 5px;
+    background-color: aqua;
+    width: 580px;
+    height: 100px;
+}
+
+
+
+
+.upimage {
+    background-color: rgb(14, 43, 43);
+    width: 100px;
+    height: 100px;
+}

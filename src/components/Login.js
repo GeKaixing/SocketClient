@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
 import axios from 'axios'
 import { Link, useNavigate } from 'react-router-dom'
-import './Socket.css'
+import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
+import style from './Login.module.css'
 import { useMutation } from 'react-query'
 import { useQuery, useQueryClient } from 'react-query'
 // import { usePostSocketLoginMutation } from '../store/storeApi'
@@ -13,6 +14,10 @@ export default function Login({ getvalue, refetch }) {
     const [responsedata, setresponsedata] = useState(true)
     const [isLoading, setLoading] = useState()
     const [id, setid] = useState('')
+    const [showpassword,setshowpassword]=useState(false)
+    const showpasswordhandler=()=>{
+        setshowpassword(()=>!showpassword)
+    }
     // const [AddSoketUser, { data:newdata, isSuccess }] = usePostSocketLoginMutation()
     // const dispatch = useDispatch();
     // dispatch(getName(valuename))    
@@ -92,9 +97,9 @@ export default function Login({ getvalue, refetch }) {
                 console.log(data);
                 console.log("登录请求");
                 setresponsedata(data.data.loginstate)
-                localStorage.setItem("userid",`${data.data._id}`)
+                localStorage.setItem("userid", `${data.data._id}`)
                 console.log(data.name);
-                localStorage.setItem("username",`${data.data.name}`)
+                localStorage.setItem("username", `${data.data.name}`)
                 setid(data.data._id)
                 getvalue({
                     name: data.data.name,
@@ -104,27 +109,33 @@ export default function Login({ getvalue, refetch }) {
                 setValuename('')
                 setValuepassword('')
                 refetch()
-                  
-
             },
             onError: (error) => { console.log(error); }
         })
 
     }
     // 查询账号
-  
+
     return (
-        <div className='login'>
+        <div className={style.login}>
             {/* 登录页面 */}
-            <input type={'text'} value={valuename} onChange={get_formname_value}>
+            <div className={style.logo}>logo</div>
+            <input className={style.name} type={'text'} value={valuename} onChange={get_formname_value} placeholder='名字'>
             </input>
-            <input type='password' value={valuepassword} onChange={get_formpassword_value}>
-            </input>
+            <div className={style.tip}>
+                <input className={style.password} type={showpassword?'text':'password'} value={valuepassword} onChange={get_formpassword_value} placeholder='密码'></input>
+                {  showpassword?
+                     <EyeOutlined className={style.EyeOutlined} onClick={showpasswordhandler}/>:
+                     <EyeInvisibleOutlined className={style.EyeInvisibleOutlined} onClick={showpasswordhandler}/>
+                }
+
+            </div>
+
             {responsedata ? null : <div>登录失败,账号或密码错误</div>}
-            <button onClick={sumbit_user_password_demo}>
+            <button className={style.button} onClick={sumbit_user_password_demo}>
                 登录
             </button>
-            <Link to={"/signup"}>注册</Link>
+            <Link className={style.signup} to={"/signup"}>注册</Link>
         </div>
 
     )

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react'
-import './Socket.css'
+import style from './Signup.module.css'
 export default function Signup({ getvalue }) {
   const [valuename_signup, setValuename_signup] = useState('')
   const [valuepassword_signup, setValuepassword_signup] = useState('')
@@ -34,7 +34,7 @@ export default function Signup({ getvalue }) {
   }
   getvalue(signupstateid);
   return (
-    <div className='signup'>
+    <div className={style.signup}>
       {/* 注册页面 */}
       <input type='text' value={valuename_signup} onChange={get_formname_signup_value}>
       </input>

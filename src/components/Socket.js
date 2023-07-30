@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import socketIO from 'socket.io-client'
 import { useNavigate } from 'react-router-dom'
-import './Socket.css'
+import style from'./Socket.module.css'
 import axios from 'axios'
 // import { useGetSocketUserByIdQuery } from '../store/storeApi'
 // import { getName } from '../store/storeSlice'
@@ -83,19 +83,19 @@ export default function Socket({ getid,usernames }) {
         }
     }, [messages])
     return (
-        <div className='socketpage'>
+        <div className={style.socketpage}>
             {/* 聊天界面 */}
             <div>
                 {
                     messages.map((item, index) =>
                         username.name === item.name ?
-                            <h1 className='one' key={index}>{item.message}:{item.name}</h1> :
+                            <h1 className={style.one} key={index}>{item.message}:{item.name}</h1> :
                             <h1 key={index}>{item.name}:{item.message}</h1>
                     )
                 }
                 {/* 聊天输入框 */}
             </div>
-            <div className='two'>
+            <div className={style.two}>
                 {/* 判断是否连接后显示断开连接按钮 */}
                 <button onClick={home}>
                     主页

@@ -4,6 +4,7 @@ import { useMutation } from 'react-query'
 import { useQuery } from 'react-query'
 import Commentlist from './Commentlist'
 import { useQueryClient } from 'react-query'
+import style from'./Comment.module.css'
 export default function Comment({ id, getcommenthandle, getid, username }) {
     const [comment, setcomment] = useState('')
     const [commentdata, setcommentdata] = useState({})
@@ -18,7 +19,7 @@ export default function Comment({ id, getcommenthandle, getid, username }) {
     useEffect(() => {
         setcommentdata({
             data: {
-                username:username,
+                username: username,
                 userid: `${getid}`,
                 articleid: `${id}`,
                 comment: `${comment}`,
@@ -55,9 +56,11 @@ export default function Comment({ id, getcommenthandle, getid, username }) {
     }
     return (
         <>
-            <input value={comment} onChange={setcomments} placeholder='评论'>
-            </input>
-            <button onClick={publishhandle}>发表</button>
+            <div className={style.comment}>
+                <input  className={style.commentimport} value={comment} onChange={setcomments} placeholder='评论'></input>
+                <button className={style.commentbutton} onClick={publishhandle}>发表</button>
+            </div>
+
             <Commentlist id={id} getid={getid} username={username}></Commentlist>
         </>
 

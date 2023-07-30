@@ -20,11 +20,12 @@ export default function Replycontent({ cid, reply }) {
         }
     )
     console.log(replydata);
-    const replycontent = replydata.map((item) => <div key={item._id}>这是名字{item.username}------{item.reply}</div>)
+    // 这是回复的内容
+   
     return (
         <div>
             {
-                replycontent
+                replydata.map((item) => <div key={item._id}>{item.username}------{item.reply}</div>)
             }
         </div>
     )

@@ -1,59 +1,4 @@
-.messagebigbox {
-    margin: auto;
-    width: 600px;
-    height: auto;
-    background-color: rgb(255, 255, 255);
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-}
-
-.rightbar {
-    position: fixed;
-    left: 0;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-    width: 250px;
-    background-color: rgb(177, 79, 79);
-}
-
-.messagebox {
-    width: 600px;
-    height: 550px;
-    background-color: rgb(97, 145, 187);
-    margin-bottom: 20px;
-}
-
-.thisshowname {
-    width: auto;
-    height: 20px;
-    background-color: blue;
-
-}
-
-.thisshowcontent {
-    width: 600px;
-    height: 500px;
-    background-color: rgb(97, 97, 154);
-}
-
-.thisshowbottom {
-    display: flex;
-    width: auto;
-    height: 20px;
-    background-color: rgb(218, 218, 231);
-}
-
-.whitelike {
-    color: rgb(0, 0, 0);
-}
-.redlike {
-    color: rgb(188, 27, 27);
-}
-
-.comment {
+/* .comment {
     color: rgb(207, 104, 104);
 }
 
@@ -94,4 +39,4 @@
     background-color: rgb(14, 43, 43);
     width: 100px;
     height: 100px;
-}
+} */

@@ -3,13 +3,15 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom'
 import Comment from './Comment';
-export default function Content({getid ,username}) {
+import style from './Content.module.css'    
+import { LikeFilled,StarFilled,RocketFilled ,MessageFilled} from '@ant-design/icons';
+export default function Content({ getid, username }) {
     const [contentdata, setcontent] = useState({})
     const [getcomment, setgetcomment] = useState('')
- 
+
     const params = useParams()
     const paramsid = params.id
-    console.log("登入id"+getid);
+    console.log("登入id" + getid);
     const getcommenthandle = (value) => {
         setgetcomment(value)
     }
@@ -28,30 +30,28 @@ export default function Content({getid ,username}) {
             }
         }
     )
-console.log(contentdata);
+    console.log(contentdata);
     return (
-        <div className='messagebigbox'>
-            <div className='messagebox'>
-                <div className='thisshowname'>
-                    <Link>{contentdata.name}</Link>
+        <div className={style.messagebig}>
+            <div className={style.messagebox}>
+                <div className={style.thisshowname}>
+                    <Link className={style.handname} >{contentdata.name}</Link>
                 </div>
-                <div className='thisshowtheme'>
+                <div className={style.thisshowtheme}>
                     <Link>{contentdata.theme}</Link>
                 </div>
-                <div className='thisshowcontent'>
+                <div className={style.thisshowcontent}>
                     {contentdata.content}
                 </div>
-                <div className='thisshowbottom'>
+                <div className={style.thisshowbottom}>
                     <div>
-                        <Link>点赞</Link>
+                        <Link className={style.whitelike}/* id='like'  onClick={first ? likehandle : offlikehandle} */><LikeFilled />{contentdata.like}</Link>
                     </div>
-                    <div>
-                        <Link>评论</Link>
+                    <div className={style.star}>
+                        <StarFilled />收藏
                     </div>
-                    <div>
-                        收藏
-                    </div>
-                    <div>
+                    <div className={style.share}>
+                        <RocketFilled />
                         分享
                     </div>
                 </div>

@@ -1,0 +1,26 @@
+.comments{
+    display: flex;
+    flex-direction:column;
+    margin-bottom: 10px;
+    width:500px ;
+}
+.comment{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.handimg{
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(85, 37, 95);
+    border-radius: 50%;
+}
+.name{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Reply{
+    margin-left: 10px;
+}

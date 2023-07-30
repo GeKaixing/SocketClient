@@ -2,13 +2,13 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import Links from '../router/Links'
 import Createup from './Portal'
-// import './Homepage.css'
+import style from './Bar.module.css'
+import User from '../components/User'
 export default function Bar({ isshow, getid, username }) {
-   const id= localStorage.getItem('userid')
     return (
-        <div className='rightbar'>
-            <Link to={`/userhomepage/${id}`}>{localStorage.getItem('username')}</Link>
-            <Links getid={getid}></Links>
+        <div className={style.bar}>
+            <div className={style.links} ><Links getid={getid}></Links></div>
+           {/*  <div className={style.users} ><User></User></div> */}
         </div>
     )
 }

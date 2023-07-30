@@ -1,0 +1,12 @@
+.one{text-align: right
+    
+}
+.two{
+    display: flex;
+    justify-content: center;
+}
+.socketpage{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+}
