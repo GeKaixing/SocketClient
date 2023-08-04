@@ -18,3 +18,7 @@ margin-left: 10px;
 .like:hover{
     color: rgb(188, 27, 27);
 }
+
+.submitreply:hover{
+    cursor: pointer;
+}

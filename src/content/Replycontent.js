@@ -1,6 +1,7 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useQuery } from 'react-query'
+import style from './Replycontent.module.css'
 export default function Replycontent({ cid, reply }) {
     const [replydata, setreply] = useState([])
      useQuery("replyconent", async () => {
@@ -19,13 +20,15 @@ export default function Replycontent({ cid, reply }) {
             }
         }
     )
+    console.log('这是回复的内容');
     console.log(replydata);
     // 这是回复的内容
    
     return (
         <div>
             {
-                replydata.map((item) => <div key={item._id}>{item.username}------{item.reply}</div>)
+                replydata.map((item) => 
+                <div key={item._id} className={style.replycontent}>{item.username}名字------{item.reply}</div>)
             }
         </div>
     )

@@ -52,14 +52,15 @@ export default function Reply({ cid, getid, username, replydata }) {
                 <div className={style.like}><LikeFilled />赞</div>
                 <div onClick={() => setshow(!show)}>回复</div>
                 <div className={style.replynumbe}>1条回复↓</div>
-                {/* <div> 
-                 <Replycontent cid={cid} reply={replydata}></Replycontent>
-            </div> */}
-            </div>
 
+            </div>
+            {/* 这是回复 */}
+            <div>
+                <Replycontent cid={cid} reply={replydata}></Replycontent>
+            </div>
             {show ? <div className={style.replyimport}>
                 <input value={replyvalue} onChange={replyhandle}></input>
-                <div onClick={submitreply}>回复</div>
+                <div onClick={submitreply} className={style.submitreply}>回复</div>
             </div> : null}
         </>
     )

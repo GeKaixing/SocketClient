@@ -32,7 +32,7 @@ export default function Content({ getid, username }) {
     )
     console.log(contentdata);
     return (
-        <div className={style.messagebig}>
+        <div className={style.message}>
             <div className={style.messagebox}>
                 <div className={style.thisshowname}>
                     <Link className={style.handname} >{contentdata.name}</Link>
