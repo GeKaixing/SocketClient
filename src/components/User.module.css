@@ -9,15 +9,9 @@
 
 }
 */
-/* .user{
-    position: fixed;
-    top: 10px;
-    right: 10px;
+.user{
     width: 200px;
-    height: 100%;
-    overflow-x: hidden;
-    
-} */
+} 
 .userbox {
     cursor: pointer;
     display: flex;
@@ -44,7 +38,6 @@
 }
 .search {
     position: relative;
-    
     height: 2rem;
     display: flex;
     margin-top: 15px;
@@ -59,7 +52,6 @@
     right: 4px;
 
 }
-
 
 .search :nth-child(1) {
     border-color: #f6f6f6;
