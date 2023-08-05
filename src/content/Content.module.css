@@ -1,5 +1,12 @@
-.messagebig {
-  /*   display: flex;
+.commentpage {
+    margin-left: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.message {
+    /*   display: flex;
     flex-direction: column;
     justify-content: center;
     
@@ -8,15 +15,12 @@
     margin-bottom: 20px;
     margin-left: 200px;
      */
-    margin-left: 200px;
-    margin-right: 200px;
-    width: 600px;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
+    flex-direction: row;
     background-color: brown;
-}       
+    width: 600px;
+}
+
 /* 
 .messagebox {
     

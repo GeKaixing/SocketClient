@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom'
 import Comment from './Comment';
-import style from './Content.module.css'    
-import { LikeFilled,StarFilled,RocketFilled ,MessageFilled} from '@ant-design/icons';
+import style from './Content.module.css'
+import User from '.././components/User'
+import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
 export default function Content({ getid, username }) {
     const [contentdata, setcontent] = useState({})
     const [getcomment, setgetcomment] = useState('')
@@ -32,33 +33,38 @@ export default function Content({ getid, username }) {
     )
     console.log(contentdata);
     return (
-        <div className={style.messagebig}>
-            <div className={style.messagebox}>
-                <div className={style.thisshowname}>
-                    <Link className={style.handname} >{contentdata.name}</Link>
-                </div>
-                <div className={style.thisshowtheme}>
-                    <Link>{contentdata.theme}</Link>
-                </div>
-                <div className={style.thisshowcontent}>
-                    {contentdata.content}
-                </div>
-                <div className={style.thisshowbottom}>
-                    <div>
-                        <Link className={style.whitelike}/* id='like'  onClick={first ? likehandle : offlikehandle} */><LikeFilled />{contentdata.like}</Link>
+        <div className={style.commentpage}>
+            <div className={style.message}>
+                <div className={style.messagebox}>
+                    <div className={style.thisshowname}>
+                        <Link className={style.handname} >{contentdata.name}</Link>
                     </div>
-                    <div className={style.star}>
-                        <StarFilled />收藏
+                    <div className={style.thisshowtheme}>
+                        <Link>{contentdata.theme}</Link>
                     </div>
-                    <div className={style.share}>
-                        <RocketFilled />
-                        分享
+                    <div className={style.thisshowcontent}>
+                        {contentdata.content}
                     </div>
+                    <div className={style.thisshowbottom}>
+                        <div>
+                            <Link className={style.whitelike}/* id='like'  onClick={first ? likehandle : offlikehandle} */><LikeFilled />{contentdata.like}</Link>
+                        </div>
+                        <div className={style.star}>
+                            <StarFilled />收藏
+                        </div>
+                        <div className={style.share}>
+                            <RocketFilled />
+                            分享
+                        </div>
+                    </div>
+                    <Comment id={params.id} getid={getid} username={username} getcommenthandle={getcommenthandle}></Comment>
+                    {/*  <input placeholder='评论'>
+                </input> */}
                 </div>
             </div>
-            <Comment id={params.id} getid={getid} username={username} getcommenthandle={getcommenthandle}></Comment>
-            {/*  <input placeholder='评论'>
-                </input> */}
+           
+                <User></User>
+            
         </div>
     )
 }
