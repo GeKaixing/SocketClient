@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import socketIO from 'socket.io-client'
 import { useNavigate } from 'react-router-dom'
 import style from './Socket.module.css'
@@ -17,6 +17,9 @@ export default function Socket({ getid, usernames }) {
     const [username, setname] = useState()
     const [isLoading, setLoading] = useState()
     const [connet, setconnet] = useState(false)
+    /*     const demo =document.getElementById('demoaa');
+         console.log(demo.scrollTop ); */
+    const ref = useRef(null)
     // const { data: dataname, isSuccess } = useGetSocketUserByIdQuery(socketname._id._id)
     const navigate = useNavigate()
     useEffect(() => {
@@ -74,6 +77,7 @@ export default function Socket({ getid, usernames }) {
     }
     console.log(messages);
     useEffect(() => {
+     ref.current.scrollTop = ref.current.scrollHeight;
         const getmessages = function (value) {
             setMessages(previous => [...previous, value]);
         }
@@ -81,11 +85,11 @@ export default function Socket({ getid, usernames }) {
         return () => {
             socket.off('sendmessage', getmessages);
         }
-    }, [messages])
+    }, [messages,ref])
     return (
-        <div className={style.socketpage}>
+        <div className={style.socketpage} >
             {/* 聊天界面 */}
-            <div className={style.chatborder}>
+            <div className={style.chatborder} ref={ref} >
                 {
                     messages.map((item, index) =>
                         username.name === item.name ?
@@ -94,6 +98,7 @@ export default function Socket({ getid, usernames }) {
                     )
                 }
                 {/* 聊天输入框 */}
+
             </div>
             <div className={style.two}>
                 {/* 判断是否连接后显示断开连接按钮 */}
@@ -128,5 +133,7 @@ export default function Socket({ getid, usernames }) {
                 </button>
             </div>
         </div>
+      
     )
+      
 }
