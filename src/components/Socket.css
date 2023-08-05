@@ -1,22 +1,27 @@
-.one{text-align: right
+.one {
+    text-align: right
     
 }
-.two{
+
+.two {
     display: flex;
     justify-content: center;
 }
-.socketpage{
+
+.socketpage {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
-.login{
+
+.login {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
-.signup{
+
+.signup {
     display: flex;
     justify-content: center;
-    align-items:center;
+    align-items: center;
 }
