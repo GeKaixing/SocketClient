@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom'
 import Comment from './Comment';
-import style from './Content.module.css'    
-import { LikeFilled,StarFilled,RocketFilled ,MessageFilled} from '@ant-design/icons';
+import User from '.././components/User'
+import style from './Content.module.css'
+import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
 export default function Content({ getid, username }) {
     const [contentdata, setcontent] = useState({})
     const [getcomment, setgetcomment] = useState('')
@@ -34,6 +35,7 @@ export default function Content({ getid, username }) {
     return (
         <div className={style.message}>
             <div className={style.messagebox}>
+                <div className={style.jj}>
                 <div className={style.thisshowname}>
                     <Link className={style.handname} >{contentdata.name}</Link>
                 </div>
@@ -55,10 +57,13 @@ export default function Content({ getid, username }) {
                         分享
                     </div>
                 </div>
-            </div>
-            <Comment id={params.id} getid={getid} username={username} getcommenthandle={getcommenthandle}></Comment>
-            {/*  <input placeholder='评论'>
+                <Comment id={params.id} getid={getid} username={username} getcommenthandle={getcommenthandle}></Comment>
+                {/*  <input placeholder='评论'>
                 </input> */}
+                </div>
+               <div className={style.user}><User></User></div>
+            </div>
+            
         </div>
     )
 }

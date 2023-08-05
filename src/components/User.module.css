@@ -9,15 +9,9 @@
 
 }
 */
-/* .user{
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 200px;
-    height: 100%;
-    overflow-x: hidden;
-    
-} */
+.user{
+    width: 200px;    
+}
 .userbox {
     cursor: pointer;
     display: flex;
@@ -44,7 +38,6 @@
 }
 .search {
     position: relative;
-    
     height: 2rem;
     display: flex;
     margin-top: 15px;
