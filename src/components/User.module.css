@@ -10,7 +10,7 @@
 }
 */
 .user{
-    width: 200px;    
+    width: 200px;
 }
 .userbox {
     cursor: pointer;
@@ -52,7 +52,6 @@
     right: 4px;
 
 }
-
 
 .search :nth-child(1) {
     border-color: #f6f6f6;

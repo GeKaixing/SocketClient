@@ -1,3 +1,10 @@
+.commentpage {
+    margin-left: 200px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
 .message {
     /*   display: flex;
     flex-direction: column;
@@ -8,9 +15,11 @@
     margin-bottom: 20px;
     margin-left: 200px;
      */
-    margin: 0 auto;
+
     display: flex;
     flex-direction: row;
+    background-color: brown;
+    width: 600px;
 }
 
 .messagebox {

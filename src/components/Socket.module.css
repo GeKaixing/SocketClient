@@ -1,12 +1,60 @@
-.one{text-align: right
+.socketpage {
+    display: flex; 
+    flex-direction: column;   
+    align-items: center;
+}
+.chatborder{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+    height: 600px;
+    overflow-y: auto;
+}
+.handimg{
+    width: 2rem;
+    height: 2rem;
+    background-color: rgb(85, 37, 95);
+    border-radius: 50%; 
+}
+.one {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: right;
     
 }
-.two{
+.chatmassage{
     display: flex;
-    justify-content: center;
+    align-items: center;
+    text-align: right;
+    
 }
-.socketpage{
+.two {
+    height: 30px;
+    width: 500px;
     display: flex;
+    flex-direction: row;
     justify-content: center;
-    align-items:center;
+    align-items: center;
+    position: sticky;
+    bottom: 30px;
+    background-color: #f6f6f6;;  
+}
+.link{
+    width: 60px;
+    height: 25px;
+}
+.closelink{
+    width: 60px;
+    height: 25px;
+}
+.chatinput{
+    height: 25px;
+    /* 输入框和button一样高度显示却是不一样的高度，用box-sizing: border-box; */
+    box-sizing: border-box;
+}
+.chatbutton{
+    width: 60px;
+    height: 25px;
 }
