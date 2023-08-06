@@ -9,8 +9,6 @@
 }
 */
 .messagebigbox {
-    flex-direction: column;
-    text-align: center;
     display: flex;
     flex-direction: column;
     width: 600px;

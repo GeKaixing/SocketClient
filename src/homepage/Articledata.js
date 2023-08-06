@@ -2,7 +2,6 @@ import axios from 'axios'
 import React, { useContext, useEffect, useState } from 'react'
 import { Link, Routes, Route, useNavigate } from 'react-router-dom'
 import { useQueryClient } from 'react-query'
-import './Homepage.css'
 import style from './Articledata.module.css'
 import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
 import TestContext from '../store/TestContext'

@@ -1,5 +1,4 @@
 .commentpage {
-    margin-left: 200px;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -9,7 +8,6 @@
     /*   display: flex;
     flex-direction: column;
     justify-content: center;
-    
     width: 500px;
     background-color: brown;
     margin-bottom: 20px;

@@ -14,6 +14,7 @@ import { useQuery, useQueryClient } from 'react-query'
 import axios from 'axios'
 import UserHomePage from '../UserHomePage/UserHomePage'
 import style from "./Routers.module.css"
+import User from '../components/User'
 export default function Routers() {
     const [getuser, setuser] = useState({
         name:'',
@@ -53,8 +54,8 @@ export default function Routers() {
     const Location = useLocation()
     const url = Location.pathname
     return (
-        <>
-            <Bar getid={getuserid} username={username}></Bar>
+        <div className={style.ss}>
+        <Bar getid={getuserid} username={username}></Bar> 
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route element={<Protected getid={getuserid} />}>
@@ -66,7 +67,8 @@ export default function Routers() {
                 <Route path='/signup' element={<Signup getvalue={getloginId} />}></Route>
                 <Route path='/homepage/:id' element={<Content getid={getuserid} username={username}></Content>}></Route>
             </Routes>
-        </>
+        <User></User>
+        </div>
 
     )
 }

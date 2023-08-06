@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom';
 import Articledata from './Articledata'
+import style from './Hompage.module.css'
 export default function Hompage({userarticles}) {
   const {pathname}=useLocation()
   const [articles, setarticles] = useState([])
@@ -32,8 +33,7 @@ export default function Hompage({userarticles}) {
     }, []) */
     console.log(articles);
   return (
-    <div>
-
+    <div className={style.jj}>
       {
         pathname==='/'?
         articles.map(function (item, index) {
