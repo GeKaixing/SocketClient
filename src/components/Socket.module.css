@@ -33,7 +33,7 @@
 }
 .two {
     height: 30px;
-    width: 500px;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
