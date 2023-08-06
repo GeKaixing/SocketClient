@@ -15,25 +15,16 @@
     margin-bottom: 20px;
     margin-left: 200px;
      */
-
     display: flex;
     flex-direction: row;
     background-color: brown;
     width: 600px;
 }
 
+/* 
 .messagebox {
-    margin: 0 auto;
-    background-color: brown;
-    width: 600px;
-    display: flex;
-    flex-direction: row;
-}
-.jj{
-  
-}
-.user {
-}
+    
+} */
 
 .thisshowname {
     padding-top: 10px;

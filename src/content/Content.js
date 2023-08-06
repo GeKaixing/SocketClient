@@ -2,7 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useQuery } from 'react-query';
 import { useParams, Link } from 'react-router-dom'
-import Comment from './Comment'
+import Comment from './Comment';
 import style from './Content.module.css'
 import User from '.././components/User'
 import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
@@ -61,7 +61,6 @@ export default function Content({ getid, username }) {
                     {/*  <input placeholder='评论'>
                 </input> */}
                 </div>
-
             </div>
            
                 <User></User>
