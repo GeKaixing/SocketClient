@@ -59,3 +59,8 @@
     width: 60px;
     height: 25px;
 }
+.islogin{
+    color: red;
+    font-size: 30px;
+    text-align: center;
+}

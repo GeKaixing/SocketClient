@@ -77,7 +77,10 @@ export default function Socket({ getid, usernames }) {
     }
     console.log(messages);
     useEffect(() => {
-     ref.current.scrollTop = ref.current.scrollHeight;
+        if(getid){
+            ref.current.scrollTop = ref.current.scrollHeight
+        }
+       
         const getmessages = function (value) {
             setMessages(previous => [...previous, value]);
         }
@@ -85,8 +88,10 @@ export default function Socket({ getid, usernames }) {
         return () => {
             socket.off('sendmessage', getmessages);
         }
-    }, [messages,ref])
+    }, [messages,ref,getid])
     return (
+        <>
+       { getid?
         <div className={style.socketpage} >
             {/* 聊天界面 */}
             <div className={style.chatborder} ref={ref} >
@@ -133,7 +138,9 @@ export default function Socket({ getid, usernames }) {
                 </button>
             </div>
         </div>
-      
+        :<div className={style.islogin}>您尚未登入</div>
+      }
+      </>
     )
       
 }
