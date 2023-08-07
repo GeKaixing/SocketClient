@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import Upload from './Upload';
 import style from './Portal.module.css'
+import { CloseOutlined } from '@ant-design/icons';
 export default function Portal({ isshow, access, getid }) {
     //这里设置禁止滚动,还不会,预留
     // 事件冒泡
@@ -37,8 +38,9 @@ export default function Portal({ isshow, access, getid }) {
     return (
         isshow && (
             /* 事件冒泡 */
-            <div className={style.backdrop} onClick={e => { e.stopPropagation(); access(e) }}>
-                <div className={style.deomcolor} onClick={(e) => e.stopPropagation()}>
+            <div className={style.backdrop}>
+                <div className={style.deomcolor} >
+                    <div className={style.back} onClick={e => { access(e) }}><div><CloseOutlined style={{ fontSize: '20px', }} /></div></div>
                     <div className={style.useruploading}>
                         {/* 头像&名字 */}
                         <div className={style.showname} >

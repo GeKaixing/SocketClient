@@ -62,8 +62,6 @@ export default function Content({ getid, username }) {
                 </input> */}
                 </div>
             </div>
-           
-                <User></User>
             
         </div>
     )

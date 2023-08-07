@@ -26,14 +26,16 @@
 
 .bar{
     position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1;
+   
     height: 100%;
     width: 200px;
     overflow-x: hidden;
     border-right: 1px solid #000000;
 }
+/* .leftplace{
+    height: 100%;
+    width: 200px;
+} */
 .aside{
     display: flex;
     flex-direction: column;

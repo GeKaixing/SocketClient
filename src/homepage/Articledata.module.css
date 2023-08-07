@@ -9,8 +9,6 @@
 }
 */
 .messagebigbox {
-    flex-direction: column;
-    text-align: center;
     display: flex;
     flex-direction: column;
     width: 600px;
@@ -22,20 +20,20 @@
     
 } */
 
-.thisshowname {
+/* .thisshowname {
     padding-top: 10px;
     padding-bottom: 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
     border-bottom: 1px solid black;
-}
-.handimg {
-    width: 2.5rem;
-    height: 2.5rem;
-    background-color: rgb(85, 37, 95);
-    border-radius: 50%;
-    margin-right: 10px;
+} */
+.thisshowname{
+    display: flex;
+    border-bottom: 1px solid black;
+    align-items: center;
+    
+    
 }
 .handname {
     text-decoration: none;
@@ -43,6 +41,14 @@
     font-weight: bold;
     color: #000;
 }
+.handimg{
+    
+    width: 30px;
+    height: 30px;
+    background-color: rgb(85, 37, 95);
+    border-radius: 50%;
+}
+
 .handname:hover {
     text-decoration: underline
 }

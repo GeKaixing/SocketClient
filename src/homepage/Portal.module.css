@@ -22,7 +22,11 @@
     width: 600px;
 }
 
-
+.back{
+    flex-direction: row;
+    align-self: flex-start;
+    padding: 5px 0 0 5px;
+}
 .uploading {
     /* 光标类型 */
     cursor: pointer;
@@ -56,6 +60,7 @@
     align-items: center;
     border-bottom: 1px solid black;
     width: 600px;
+    box-sizing:border-box;
 }
 
 .handimg {
@@ -78,6 +83,8 @@
     background-color: aqua;
     width: 580px;
     height: 100px;
+    max-height:380px;
+    resize: none;
 }
 
 

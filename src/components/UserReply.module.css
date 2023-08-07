@@ -1,0 +1,19 @@
+.replyimport {
+    border-radius: 20px;
+    width: 200px;
+    height: 6rem;
+    display: flex;
+    margin-top: 15px;
+    align-items: center;
+    justify-content: center;
+    justify-content: space-between;
+    background-color: #f6f6f6;
+}
+
+.reply {
+    height: 2rem;
+    width: 160px;
+}
+.submit{
+    font-weight: bold;
+} 

@@ -33,7 +33,7 @@
 }
 .two {
     height: 30px;
-    width: 500px;
+    
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -58,4 +58,10 @@
 .chatbutton{
     width: 60px;
     height: 25px;
+}
+.islogin{
+    color: red;
+    font-size: 30px;
+    text-align: center;
+    width: 600px;
 }

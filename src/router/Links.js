@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState,useRef, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { Link } from 'react-router-dom'
 import style from './Links.module.css'
@@ -6,6 +6,7 @@ import { HomeFilled, MessageFilled, PlusSquareFilled, BulbFilled } from '@ant-de
 import Portal from '../homepage/Portal'
 export default function Links({ getid }) {
   const [isshow, setshow] = useState(false)
+
   const createtext = () => {
     setshow(!isshow)
   }
@@ -13,9 +14,10 @@ export default function Links({ getid }) {
     e.stopPropagation()
     setshow(!isshow)
   }
+
   return (
-    <>
-      <div className={style.bar}>
+    <div >
+      <div className={style.bar} >
         <div className={style.aside}>
         <div className={style.logo}>logo</div>
         <Link className={style.link} to="/"> <div><HomeFilled />主页</div></Link>
@@ -32,6 +34,7 @@ export default function Links({ getid }) {
           <Portal isshow={isshow} getid={getid} access={showback} ></Portal>,
           document.getElementById('portal'))
       }
-    </>
+      {/* <div className={style.leftplace}></div> */}
+    </div>
   )
 }

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import TestContext from '../store/TestContext';
-import style from './User.module.css'
+import style from './UserReply.module.css'
 
 export default function UserReply() {
     /* 
@@ -18,22 +18,22 @@ export default function UserReply() {
     console.log(showcomment);
     return (
         <>
-            {showcomment&&
-            pathstate&&
+            {showcomment &&
+                pathstate &&
+                <div className={style.replyimport
+                } >
+                    <input className={style.reply} placeholder={showreply ? '输入你的回复' : '输入你的评论'} type={'text'}></input>
+                    <div className={style.submit} >{showreply ? '回复' : '评论'}</div>
+                </div >
+            }
+            {
+                showreply ?
                     <div className={style.replyimport
                     } >
                         <input className={style.reply} placeholder={showreply ? '输入你的回复' : '输入你的评论'} type={'text'}></input>
                         <div className={style.submit} >{showreply ? '回复' : '评论'}</div>
-                    </div > 
+                    </div > : null
             }
-            {  
-            showreply?
-            <div className={style.replyimport
-                    } >
-                        <input className={style.reply} placeholder={showreply ? '输入你的回复' : '输入你的评论'} type={'text'}></input>
-                        <div className={style.submit} >{showreply ? '回复' : '评论'}</div>
-                    </div > :null
-                    }
         </>
 
     )
