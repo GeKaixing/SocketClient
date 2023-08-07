@@ -84,7 +84,7 @@ export default function Articledata(props) {
                 <div className={style.messagebigbox} onClick={navgatehandle}>
                     <div className={style.messagebox}>
                         <div className={style.thisshowname} onClick={e=>e.stopPropagation()}>
-                            <div className={style.handimg} ></div>
+                            <div className={style.handimg}></div>
                             <Link className={style.handname}>{props.name}</Link>
                         </div>
                         <div className={style.thisshowtheme} onClick={e=>e.stopPropagation()}>
@@ -103,9 +103,8 @@ export default function Articledata(props) {
                             <div className={style.star} onClick={e=>e.stopPropagation()}>
                                 <StarFilled />收藏
                             </div>
-                            <div className={style.share} onClick={(e)=>e.stopPropagation()}>
-                                <RocketFilled />
-                                分享
+                            <div className={style.share} onClick={e=>e.stopPropagation()}>
+                                <RocketFilled />分享
                             </div>
                         </div>
                     </div>

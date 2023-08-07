@@ -1,4 +1,4 @@
-import React, {useContext}from 'react';
+import React, { useContext } from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import Login from './components/Login';
@@ -18,7 +18,7 @@ import Replycontent from './content/Replycontent';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // 在入口文件配置usequery
 const queryClient = new QueryClient()
-document.documentElement.style.fontSize=100/750+'vm';
+document.documentElement.style.fontSize = 100 / 750 + 'vm';
 root.render(
     <Provider store={store}>
         <BrowserRouter>
@@ -26,11 +26,11 @@ root.render(
             <QueryClientProvider client={queryClient}>
                 {/*<Login></Login> */}
                 <App></App>
-              {/*  <UploadDemo></UploadDemo> */}
+                {/*  <UploadDemo></UploadDemo> */}
                 {/* <Replycontent></Replycontent> */}
-             {/*    <Demo></Demo> */}
+                {/*    <Demo></Demo> */}
                 {/* <Query></Query> */}
-                  {/*  <Demoupload></Demoupload> */}
+                {/*  <Demoupload></Demoupload> */}
                 <ReactQueryDevtools initialIsOpen={false} />
             </QueryClientProvider>
         </BrowserRouter>
