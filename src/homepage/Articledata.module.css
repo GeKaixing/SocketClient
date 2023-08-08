@@ -44,14 +44,15 @@
     
 }
 .handimg{
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     background-color: rgb(85, 37, 95);
     border-radius: 50%;
     overflow: hidden;
-    vertical-align: middle;
 }
 .img{
+    width: 100%;
+    height: 100%;
     vertical-align: middle;
     text-align: center;
 }
