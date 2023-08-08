@@ -33,7 +33,7 @@ export default function Hompage({userarticles}) {
     }, []) */
     console.log(articles);
   return (
-    <div className={style.jj}>
+    <div >
       {
         pathname==='/'?
         articles.map(function (item, index) {
