@@ -5,6 +5,7 @@ import { useQueryClient } from 'react-query'
 import style from './Articledata.module.css'
 import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
 import TestContext from '../store/TestContext'
+import test from '../test.png'
 export default function Articledata(props) {
     // const aa = comment.map((item) => {
     //     <Link key={item.id}>{item.comment}</Link>
@@ -84,14 +85,18 @@ export default function Articledata(props) {
                 <div className={style.messagebigbox} onClick={navgatehandle}>
                     <div className={style.messagebox}>
                         <div className={style.thisshowname} onClick={e=>e.stopPropagation()}>
-                            <div className={style.handimg}></div>
+                            <div className={style.handimg}>
+                            <img src={test} className={style.img}></img>
+                            </div>
                             <Link className={style.handname}>{props.name}</Link>
                         </div>
                         <div className={style.thisshowtheme} onClick={e=>e.stopPropagation()}>
                             <Link>{props.contenttheme}</Link>
                         </div>
                         <div className={style.thisshowcontent}>
+                            
                             {props.content}
+                            <img src={test} className={style.img}></img>
                         </div>
                         <div className={style.thisshowbottom} >
                             <div>

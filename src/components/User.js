@@ -4,12 +4,15 @@ import style from './User.module.css'
 import { SearchOutlined } from '@ant-design/icons';
 import TestContext from '../store/TestContext';
 import UserReply from './UserReply';
+import test from '../test.png'
 export default function User() {
     const id = localStorage.getItem('userid')
     return (
         <div className={style.user}>
             <div className={style.userbox}>
-                <div className={style.handimg}></div>
+                <div className={style.handimg}>
+                    <img src={test} className={style.test}></img>
+                </div>
                 <Link className={style.usernames} to={`/userhomepage/${id}`}>{localStorage.getItem('username')}</Link>
             </div>
             <div className={style.search}>
@@ -19,7 +22,9 @@ export default function User() {
             <div className={style.recommend}>
                 <div>推荐关注</div>
                 <div className={style.recommends}>
-                    <div> <div className={style.recommendhand}></div><Link to={`/userhomepage/${id}`} className={style.recommendname}>{localStorage.getItem('username')}</Link><div>关注</div></div>
+                    <div> <div className={style.recommendhand}>
+                    <img src={test} className={style.test}></img>
+                        </div><Link to={`/userhomepage/${id}`} className={style.recommendname}>{localStorage.getItem('username')}</Link><div>关注</div></div>
                     <div> <div className={style.recommendhand}></div><Link to={`/userhomepage/${id}`} className={style.recommendname}>{localStorage.getItem('username')}</Link><div>关注</div></div>
                     <div> <div className={style.recommendhand}></div><Link to={`/userhomepage/${id}`} className={style.recommendname}>{localStorage.getItem('username')}</Link><div>关注</div></div>
                     <div> <div className={style.recommendhand}></div><Link to={`/userhomepage/${id}`} className={style.recommendname}>{localStorage.getItem('username')}</Link><div>关注</div></div>

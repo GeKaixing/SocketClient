@@ -40,13 +40,15 @@
     font-size: 20px;
     font-weight: bold;
     color: #000;
+    
 }
 .handimg{
-    
     width: 30px;
     height: 30px;
     background-color: rgb(85, 37, 95);
     border-radius: 50%;
+    overflow: hidden;
+    vertical-align: middle;
 }
 
 .handname:hover {
@@ -54,6 +56,12 @@
 }
 .thisshowcontent{
     display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+.img{
+    vertical-align: middle;
+    text-align: center;
 }
 .thisshowbottom {
     display: flex;
