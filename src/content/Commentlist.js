@@ -30,16 +30,21 @@ export default function Commentlist({ id, getid, username }) {
             {commentdata.map(item =>
                 <li key={item._id} className={style.comments} >
                     <span className={style.comment}>
-                        {item.namscontent.map(items =>
+                        {item.namescontent.map(items =>
                             <div className={style.name} key={items}>
-                                <div className={style.handimg}></div>
-                                <div>测试：</div>
+                                <div className={style.handimg}>
+                                    <img src={`${items.headimg}`} className={style.headimgs}></img>
+                                    </div>
+                                   
+                                <div>{items.name}:</div>
                             </div>)}
                         这是评论{item.comment}</span>
                     <div className={style.Replyimport}>
-                        <div className={style.Reply}><Reply cid={item._id} getid={getid} username={username} replydata={item.replycontent} ></Reply></div>
+                        <div className={style.Reply}>
+                            <Reply cid={item._id} getid={getid} username={username} replycontent={item.replycontent} ></Reply>
+                        </div>
                     </div>
-                  
+
                 </li>
             )}
         </div>

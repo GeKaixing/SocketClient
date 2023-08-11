@@ -1,3 +1,10 @@
-.replycontent{
-margin-left: 60px;
+.replycontent {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+}
+
+.replycontents {
+    text-align: start;
 }
