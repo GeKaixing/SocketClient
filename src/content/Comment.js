@@ -34,10 +34,11 @@ export default function Comment({ id, getcommenthandle, /* getid */ username }) 
             return axios.post('http://127.0.0.1:4000/postcomment', data)
         }
     )
+     const userid =localStorage.getItem('userid')
     // publish 发表
     console.log(getid === '');
     const publishhandle = () => {
-        getid === '' ? alert('还没有登入') :
+        userid === '' ? alert('还没有登入') :
             comment === '' ?
                 alert('不能为空') :
                 mutation.mutate(commentdata, {
