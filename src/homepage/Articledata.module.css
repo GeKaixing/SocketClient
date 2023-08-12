@@ -85,6 +85,12 @@
     text-decoration: underline;
 }
 
+.star{
+    color: #000;
+}
+.nostar{
+    color:red;
+}
 .star:hover {
     color: rgb(231, 233, 125);
 }

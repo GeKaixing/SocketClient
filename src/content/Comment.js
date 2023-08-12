@@ -5,7 +5,8 @@ import { useQuery } from 'react-query'
 import Commentlist from './Commentlist'
 import { useQueryClient } from 'react-query'
 import style from'./Comment.module.css'
-export default function Comment({ id, getcommenthandle, getid, username }) {
+export default function Comment({ id, getcommenthandle, /* getid */ username }) {
+    const getid=localStorage.getItem('userid')
     const [comment, setcomment] = useState('')
     const [commentdata, setcommentdata] = useState({})
     // const [rescomment, setrescomment] = useState({})
@@ -33,9 +34,10 @@ export default function Comment({ id, getcommenthandle, getid, username }) {
             return axios.post('http://127.0.0.1:4000/postcomment', data)
         }
     )
-    // publish 发表
+     const userid =localStorage.getItem('userid')
+    console.log(getid === '');
     const publishhandle = () => {
-        getid === '' ? alert('还没有登入') :
+        userid === '' ? alert('还没有登入') :
             comment === '' ?
                 alert('不能为空') :
                 mutation.mutate(commentdata, {
@@ -59,7 +61,6 @@ export default function Comment({ id, getcommenthandle, getid, username }) {
                 <input  className={style.commentimport} value={comment} onChange={setcomments} placeholder='评论'></input>
                 <button className={style.commentbutton} onClick={publishhandle}>发表</button>
             </div>
-
             <Commentlist id={id} getid={getid} username={username}></Commentlist>
         </>
 
