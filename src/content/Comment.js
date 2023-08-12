@@ -35,6 +35,7 @@ export default function Comment({ id, getcommenthandle, /* getid */ username }) 
         }
     )
      const userid =localStorage.getItem('userid')
+    // publish 发表
     console.log(getid === '');
     const publishhandle = () => {
         userid === '' ? alert('还没有登入') :
