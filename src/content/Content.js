@@ -9,10 +9,8 @@ import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design
 export default function Content({ getid, username }) {
     const [contentdata, setcontent] = useState({})
     const [getcomment, setgetcomment] = useState('')
-
     const params = useParams()
     const paramsid = params.id
-    console.log("登入id" + getid);
     const getcommenthandle = (value) => {
         setgetcomment(value)
     }

@@ -24,7 +24,6 @@ export default function Commentlist({ id, getid, username }) {
             }
         }
     )
-    console.log(commentdata);
     return (
         <div>
             {commentdata.map(item =>

@@ -14,8 +14,6 @@ export default function UserReply() {
     const pathstate = path == '/'
     // 显示评论或者回复字段
     const { showcomment, showreply, setshowreplyhandler } = useContext(TestContext)
-    console.log(pathstate);
-    console.log(showcomment);
     return (
         <>
             {showcomment &&

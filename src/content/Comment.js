@@ -35,8 +35,6 @@ export default function Comment({ id, getcommenthandle, /* getid */ username }) 
         }
     )
     // publish 发表
-    
-    
     console.log(getid === '');
     const publishhandle = () => {
         getid === '' ? alert('还没有登入') :

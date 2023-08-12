@@ -1,0 +1,30 @@
+.userhomepage {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+}
+.head{
+display: flex;
+flex-direction: row;
+align-items: center;
+border-bottom: 1px solid black;
+}
+.headimg{
+    width: 3rem;
+    height: 3rem;
+    background-color: rgb(85, 37, 95);
+    border-radius: 50%;
+    overflow: hidden;
+}
+.img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+.name{
+    font-size: 20px;
+}
+.userhistory {
+        display: flex;
+        justify-content: space-around;
+}
