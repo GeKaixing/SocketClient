@@ -88,6 +88,7 @@ export default function Articledata(props) {
                             <div className={style.handimg}>
                             <img src={test} className={style.img}></img>
                             </div>
+                            {console.log(props.name)}
                             <Link className={style.handname}>{props.name}</Link>
                         </div>
                         <div className={style.thisshowtheme} onClick={e=>e.stopPropagation()}>
