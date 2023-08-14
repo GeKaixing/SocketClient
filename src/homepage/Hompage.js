@@ -4,8 +4,8 @@ import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom';
 import Articledata from './Articledata'
 import style from './Hompage.module.css'
-export default function Hompage({userarticles}) {
-  const {pathname}=useLocation()
+export default function Hompage({ userarticles }) {
+  const { pathname } = useLocation()
   const [articles, setarticles] = useState([])
   const { isSuccess } = useQuery("articles", async () => {
     const response = await axios.get('http://127.0.0.1:4000/retrievearticle')
@@ -31,41 +31,43 @@ export default function Hompage({userarticles}) {
       }
       getarticles()
     }, []) */
-    console.log(articles);
+  console.log(articles);
   return (
     <div >
       {
-        pathname==='/'?
-        articles.map(function (item, index) {
-          return (
-            <Articledata
-              key={item._id}
-              name={item.name}
-              contenttheme={item.contenttheme}
-              content={item.content}
-              comments={item.comments}
-              like={item.like}
-              isSuccess={isSuccess}
-              id={item._id} >
-            </Articledata>
-          );
-        }
-        ): 
-        userarticles.map(function (item, index) {
-          return (
-            <Articledata
-              key={item._id}
-              name={item.name}
-              contenttheme={item.contenttheme}
-              content={item.content}
-              comments={item.comments}
-              like={item.like}
-              isSuccess={isSuccess}
-              id={item._id} >
-            </Articledata>
-          );
-        }
-        )
+        pathname === '/' ?
+          articles.map(function (item, index) {
+            return (
+              <Articledata
+                key={item._id}
+                name={item.name}
+                contenttheme={item.contenttheme}
+                content={item.content}
+                comments={item.comments}
+                like={item.like}
+                isSuccess={isSuccess}
+                id={item._id}
+                favorite={item.favorite}
+              >
+              </Articledata>
+            );
+          }
+          ) :
+          userarticles.map(function (item, index) {
+            return (
+              <Articledata
+                key={item._id}
+                name={item.name}
+                contenttheme={item.contenttheme}
+                content={item.content}
+                comments={item.comments}
+                like={item.like}
+                isSuccess={isSuccess}
+                id={item._id} >
+              </Articledata>
+            );
+          }
+          )
       }
     </div >
   )

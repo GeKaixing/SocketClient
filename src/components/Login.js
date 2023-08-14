@@ -109,6 +109,7 @@ export default function Login({ getvalue, refetch }) {
                 setValuename('')
                 setValuepassword('')
                 refetch()
+                queryClient.setQueryData('queryname', prev => [...prev, data])
             },
             onError: (error) => { console.log(error); }
         })
