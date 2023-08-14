@@ -39,6 +39,9 @@ export default function Articledata(props) {
         getcomment()
     }, []) */
     const queryClient = useQueryClient()
+    useEffect(()=>{
+
+    },[])
     const likehandle = (e) => {
         e.stopPropagation()
 
