@@ -9,7 +9,6 @@ const storeSlice=createSlice({
             state.data=action.payload
             state._id=action.payload
             state.entities.push(action.payload)
-           
            /* return{
             ...state,
             data:action.payload

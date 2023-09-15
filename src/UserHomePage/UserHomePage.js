@@ -3,7 +3,7 @@ import style from './UserHomePage.module.css'
 import Userarticle from './Userarticle'
 import Userlikes from './Userlikes'
 import Userfavorite from './Userfavorite'
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import test from '../test.png'
 export default function UserHomePage() {
 
@@ -23,8 +23,13 @@ export default function UserHomePage() {
     }
   }
   const params = useParams()
-  console.log(params);
-
+  const Navigate = useNavigate()
+  const initlonginState = { loginstate: false, }
+  const initlonginStateData = JSON.stringify(initlonginState)
+  const closeAnAccountHanlder = () => {
+    localStorage.setItem('longinState', initlonginStateData)
+    Navigate('/')
+  }
   return (
     <div className={style.userhomepage}>
       <div className={style.head}>
@@ -32,7 +37,8 @@ export default function UserHomePage() {
           <img src={test} className={style.img}></img>
         </div>
         <p className={style.name}> {localStorage.getItem('username')}</p>
-       </div>
+        <div onClick={closeAnAccountHanlder}>注销</div>
+      </div>
       <div className={style.userhistory}>
         <div onClick={() => { setseletcpage('Userarticle') }}>文章</div>
         <div onClick={() => { setseletcpage('Userlikes') }}>赞</div>

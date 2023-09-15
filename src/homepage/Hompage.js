@@ -31,7 +31,6 @@ export default function Hompage({ userarticles }) {
       }
       getarticles()
     }, []) */
-  console.log(articles);
   return (
     <div >
       {
@@ -40,14 +39,14 @@ export default function Hompage({ userarticles }) {
             return (
               <Articledata
                 key={item._id}
+                id={item._id}
                 name={item.name}
-                contenttheme={item.contenttheme}
                 content={item.content}
                 comments={item.comments}
-                like={item.like}
+                likes={item.likes}
+                favorites={item.favorites}
                 isSuccess={isSuccess}
-                id={item._id}
-                favorite={item.favorite}
+                 /* contenttheme={item.contenttheme} */
               >
               </Articledata>
             );

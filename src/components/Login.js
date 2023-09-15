@@ -8,15 +8,15 @@ import { useQuery, useQueryClient } from 'react-query'
 // import { usePostSocketLoginMutation } from '../store/storeApi'
 // import { getName } from '../store/storeSlice'
 // import { useDispatch, useSelector } from 'react-redux'
-export default function Login({ getvalue, refetch }) {
+export default function Login({ getvalue }) {
     const [valuename, setValuename] = useState('')
     const [valuepassword, setValuepassword] = useState('')
-    const [responsedata, setresponsedata] = useState(true)
+    const [responsedata, setresponsedata] = useState('')
     const [isLoading, setLoading] = useState()
     const [id, setid] = useState('')
-    const [showpassword,setshowpassword]=useState(false)
-    const showpasswordhandler=()=>{
-        setshowpassword(()=>!showpassword)
+    const [showpassword, setshowpassword] = useState(false)
+    const showpasswordhandler = () => {
+        setshowpassword(() => !showpassword)
     }
     // const [AddSoketUser, { data:newdata, isSuccess }] = usePostSocketLoginMutation()
     // const dispatch = useDispatch();
@@ -77,16 +77,23 @@ export default function Login({ getvalue, refetch }) {
         // 回退
         navigate(-1)
     } */
-    /* console.log(responsedata); */
     // true表示的登陆成功
     // false表示登录失败，提示账号密码是否错误或提示是否注册
-    // use query编写 
+    // use query编写
+    // 初始化localStorage
+if (localStorage.getItem("longinStates") === null) {
+        const initlonginState = { loginstate: false, }
+        const initlonginStateData = JSON.stringify(initlonginState)
+        localStorage.setItem("longinState", initlonginStateData)
+    }  
     const queryClient = useQueryClient()
-
-    const mutation = useMutation(data => {
-        return axios.post('http://127.0.0.1:4000/login', data)
+    const mutation = useMutation({
+        mutationFn: data => {
+            return axios.post('http://127.0.0.1:4000/login', data)
+        },
+        mutationKey: 'longin',
     })
-    const sumbit_user_password_demo = () => {
+    const sumbit_user_password_demo = (e) => {
         mutation.mutate({
             data: {
                 name: valuename,
@@ -94,28 +101,28 @@ export default function Login({ getvalue, refetch }) {
             }
         }, {
             onSuccess: (data) => {
-                console.log(data);
-                console.log("登录请求");
-                setresponsedata(data.data.loginstate)
-                localStorage.setItem("userid", `${data.data._id}`)
-                console.log(data.name);
-                localStorage.setItem("username", `${data.data.name}`)
-                setid(data.data._id)
-                getvalue({
-                    name: data.data.name,
-                    userid: data.data._id
-                })
+
+                // console.log("登录请求");
+                setresponsedata(data.data)
+                const userData = JSON.stringify(data.data)
+                localStorage.setItem("longinState", userData)
+                // console.log(data.name);
+                // localStorage.setItem("username", `${data.data.name}`)
+                // setid(data.data._id)
+                getvalue(data.data)
                 setLoading(true)
                 setValuename('')
                 setValuepassword('')
-                refetch()
-                queryClient.setQueryData('queryname', prev => [...prev, data])
+                /* 跳转后bar的login组件undshow */
+                data.data.loginstate && navigate('/');
+                queryClient.setQueryData('userData', data);
+
             },
             onError: (error) => { console.log(error); }
         })
 
     }
-    // 查询账号
+
 
     return (
         <div className={style.login}>
@@ -124,15 +131,16 @@ export default function Login({ getvalue, refetch }) {
             <input className={style.name} type={'text'} value={valuename} onChange={get_formname_value} placeholder='名字'>
             </input>
             <div className={style.tip}>
-                <input className={style.password} type={showpassword?'text':'password'} value={valuepassword} onChange={get_formpassword_value} placeholder='密码'></input>
-                {  showpassword?
-                     <EyeOutlined className={style.EyeOutlined} onClick={showpasswordhandler}/>:
-                     <EyeInvisibleOutlined className={style.EyeInvisibleOutlined} onClick={showpasswordhandler}/>
+                <input className={style.password} type={showpassword ? 'text' : 'password'} value={valuepassword} onChange={get_formpassword_value} placeholder='密码'></input>
+                {showpassword ?
+                    <EyeOutlined className={style.EyeOutlined} onClick={showpasswordhandler} /> :
+                    <EyeInvisibleOutlined className={style.EyeInvisibleOutlined} onClick={showpasswordhandler} />
                 }
-
             </div>
-
-            {responsedata ? null : <div>登录失败,账号或密码错误</div>}
+            {responsedata.loginstate === true ? <p>已登录</p> :
+                responsedata.loginstate === false ?
+                    <div>登录失败,账号或密码错误</div> :
+                    responsedata.loginstate === '' ? null : null}
             <button className={style.button} onClick={sumbit_user_password_demo}>
                 登录
             </button>

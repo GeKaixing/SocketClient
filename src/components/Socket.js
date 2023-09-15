@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useRef, useState, useContext } from 'react'
 import socketIO from 'socket.io-client'
 import { useNavigate } from 'react-router-dom'
 import style from './Socket.module.css'
 import axios from 'axios'
+import usert_text from '../store/Usert_text'
 // import { useGetSocketUserByIdQuery } from '../store/storeApi'
 // import { getName } from '../store/storeSlice'
 // import { useDispatch, useSelector } from 'react-redux'
 const socket = socketIO.connect('http://localhost:4000', { autoConnect: false })
 export default function Socket({ getid, usernames }) {
+    const { getuser } = useContext(usert_text)
     // const dispatch = useDispatch()
     // const socketname = useSelector(state => state.socketData)
     // console.log(socketname);
@@ -77,10 +79,10 @@ export default function Socket({ getid, usernames }) {
     }
     console.log(messages);
     useEffect(() => {
-        if(getid){
+        if (getid) {
             ref.current.scrollTop = ref.current.scrollHeight
         }
-       
+
         const getmessages = function (value) {
             setMessages(previous => [...previous, value]);
         }
@@ -88,26 +90,26 @@ export default function Socket({ getid, usernames }) {
         return () => {
             socket.off('sendmessage', getmessages);
         }
-    }, [messages,ref,getid])
+    }, [messages, ref, getid])
     return (
         <>
-       { getid?
-        <div className={style.socketpage} >
-            {/* 聊天界面 */}
-            <div className={style.chatborder} ref={ref} >
-                {
-                    messages.map((item, index) =>
-                        username.name === item.name ?
-                            <p className={style.one} key={index}>{item.message}:{item.name}<div className={style.handimg}></div></p> :
-                            <p className={style.chatmassage} key={index} ><div className={style.handimg}></div>{item.name}:{item.message}</p>
-                    )
-                }
-                {/* 聊天输入框 */}
+            {getuser.loginstate ?
+                <div className={style.socketpage} >
+                    {/* 聊天界面 */}
+                    <div className={style.chatborder} ref={ref} >
+                        {
+                            messages.map((item, index) =>
+                                username.name === item.name ?
+                                    <p className={style.one} key={index}>{item.message}:{item.name}<div className={style.handimg}></div></p> :
+                                    <p className={style.chatmassage} key={index} ><div className={style.handimg}></div>{item.name}:{item.message}</p>
+                            )
+                        }
+                        {/* 聊天输入框 */}
 
-            </div>
-            <div className={style.two}>
-                {/* 判断是否连接后显示断开连接按钮 */}
-                {/*  <button onClick={home}>
+                    </div>
+                    <div className={style.two}>
+                        {/* 判断是否连接后显示断开连接按钮 */}
+                        {/*  <button onClick={home}>
                     主页
                 </button>
                 <button onClick={about}>
@@ -116,31 +118,31 @@ export default function Socket({ getid, usernames }) {
                 <button onClick={login}>
                     登录
                 </button> */}
-                <button onClick={connect} className={style.link}>
-                    连接
-                </button>
-                <button onClick={disconnect} className={style.closelink}>
-                    断开连接
-                </button>
-                {isLoading ?
-                    <div>
-                        {usernames || username.name}
-                    </div> :
-                    null
-                }
-                <form>
-                    <input value={data} onChange={getvalue} className={style.chatinput}>
-                    </input>
+                        <button onClick={connect} className={style.link}>
+                            连接
+                        </button>
+                        <button onClick={disconnect} className={style.closelink}>
+                            断开连接
+                        </button>
+                        {isLoading ?
+                            <div>
+                                {usernames || username.name}
+                            </div> :
+                            null
+                        }
+                        <form>
+                            <input value={data} onChange={getvalue} className={style.chatinput}>
+                            </input>
 
-                </form>
-                <button className={style.chatbutton} onClick={handlersend}>
-                    发送
-                </button>
-            </div>
-        </div>
-        :<div className={style.islogin}>您尚未登入</div>
-      }
-      </>
+                        </form>
+                        <button className={style.chatbutton} onClick={handlersend}>
+                            发送
+                        </button>
+                    </div>
+                </div>
+                : <div className={style.islogin}>您尚未登入</div>
+            }
+        </>
     )
-      
+
 }

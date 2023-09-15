@@ -35,7 +35,6 @@ const socketApi = createApi({
                 query(id){
                     console.log(id);
                     return{
-                        
                         url:`queryone/${id}`,
                         method:"GET",
                     }

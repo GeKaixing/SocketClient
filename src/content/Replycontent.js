@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useQueryClient, useMutation } from 'react-query'
 import style from './Replycontent.module.css'
 export default function Replycontent({ replycontent, getid }) {
-
     /*const [replydata, setreply] = useState([])
          useQuery("replyconent", async () => {
             const data = await axios.get(`http://127.0.0.1:4000/getreplycontents/${cid}`)

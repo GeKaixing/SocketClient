@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Upload from './Upload';
 import style from './Portal.module.css'
 import { CloseOutlined } from '@ant-design/icons';
-export default function Portal({ isshow, access, getid }) {
+export default function Portal({ isshow, access,}) {
     //这里设置禁止滚动,还不会,预留
     // 事件冒泡
     const [gettextarea, settextarea] = useState('')
@@ -12,6 +12,8 @@ export default function Portal({ isshow, access, getid }) {
         settextarea(e.target.value)
     }
     const name = localStorage.getItem('username')
+    const getid = localStorage.getItem('userid')
+ 
     // console.log(gettextarea);
     // 根据用户id,上传用户帖子内容,
     // 服务器根据用户id查询,并在该用户下保存帖子内容
@@ -26,7 +28,7 @@ export default function Portal({ isshow, access, getid }) {
                         name: name,
                         content: gettextarea,
                         user: getid
-                    }
+                    }   
                 })
                     .then((res) => {
                         console.log(res)
@@ -35,8 +37,9 @@ export default function Portal({ isshow, access, getid }) {
                         console.log(e)
                     })
     }
+    /* const loginData = JSON.parse(localStorage.getItem("longinState")) */
     return (
-        isshow && (
+        isshow &&(
             /* 事件冒泡 */
             <div className={style.backdrop}>
                 <div className={style.deomcolor} >

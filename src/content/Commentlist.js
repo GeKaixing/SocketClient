@@ -34,7 +34,6 @@ export default function Commentlist({ id, getid, username }) {
                                 <div className={style.handimg}>
                                     <img src={`${items.headimg}`} className={style.headimgs}></img>
                                     </div>
-                                   
                                 <div>{items.name}:</div>
                             </div>)}
                         这是评论{item.comment}</span>
