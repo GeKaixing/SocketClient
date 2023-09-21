@@ -1,129 +1,71 @@
-import React, { useEffect, useRef, useState } from 'react'
-import axios from 'axios'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { EyeOutlined, EyeInvisibleOutlined } from '@ant-design/icons'
 import style from './Login.module.css'
-import { useMutation } from 'react-query'
-import { useQuery, useQueryClient } from 'react-query'
-// import { usePostSocketLoginMutation } from '../store/storeApi'
-// import { getName } from '../store/storeSlice'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useLoginMutation } from '../store/api/LoginApi'
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../store/slice/loginSlice'
 export default function Login({ getvalue }) {
+    // 设置账号init
     const [valuename, setValuename] = useState('')
+    // 设置密码init
     const [valuepassword, setValuepassword] = useState('')
-    const [responsedata, setresponsedata] = useState('')
-    const [isLoading, setLoading] = useState()
-    const [id, setid] = useState('')
+    // 是否显示密码
     const [showpassword, setshowpassword] = useState(false)
-    const showpasswordhandler = () => {
-        setshowpassword(() => !showpassword)
-    }
-    // const [AddSoketUser, { data:newdata, isSuccess }] = usePostSocketLoginMutation()
-    // const dispatch = useDispatch();
-    // dispatch(getName(valuename))    
-    // const socketData = useSelector(state=>state.socketData) 
+    // uselonginMutation Api
+    const [loginFN, { isError: longinerror, isSuccess }] = useLoginMutation()
+
+    // 利用该钩子返回上一个路由
+    const navigate = useNavigate()
+    //通过dispatch()来获取派发器对象
+    const dispatch = useDispatch()
+
+
+    // 获取账号方法
     const get_formname_value = (e) => {
         e.preventDefault()
         setValuename(e.target.value)
     }
+    // 获取密码方法
     const get_formpassword_value = (e) => {
         e.preventDefault()
         setValuepassword(e.target.value)
     }
-    let navigate = useNavigate()
-    // axios编写
-    const sumbit_user_password = async function () {
-        try {
-            setLoading(false)
-            const response = await axios.post('http://127.0.0.1:4000/login', {
-                data: {
-                    name: valuename,
-                    password: valuepassword
+    // 是否显示密码函数
+    const showpasswordhandler = () => {
+        setshowpassword(() => !showpassword)
+    }
+    //登录方法
+    const sumbit_user_password_demo = () => {
+        // 判断账号和密码是否为空
+        if (valuename && valuepassword) {
+            loginFN({
+                name: valuename,
+                password: valuepassword
+            }).then(res => {
+                if (res.data?.loginstate) {
+                    // 把状态设置到loginSlice中并且持久化数据
+                    dispatch(login({
+                        token: res.data.token,
+                        name: res.data.name,
+                    }))
+                    // 登录成功后把账号和密码设置为空
+                    setValuename('');
+                    setValuepassword('');
+                    // 登录成功后重定向主页
+                    navigate('/', { replace: true })
+                } else {
+                    alert('密码或账号错误')
                 }
-            })
-            console.log(response);
-            console.log("登录请求");
-            setresponsedata(response.data.loginstate)
-            getvalue(response.data._id)
-            setLoading(true)
-            setValuename('')
-            setValuepassword('')
-            // 回退没有写
-        }
-        catch (error) {
-            console.log(error);
-        }
-    }
-    /* const demo = () => {
-        AddSoketUser({
-           
-                name: valuename,
-                password: valuepassword
-            
-        }).unwrap()
-            .then((newdata) => {
-                dispatch(getName(newdata))  
-                console.log(newdata);
-                // setChatId(data._id)
-                // localStorage.setItem("token", `${data.token}`)
-                // localStorage.setItem("id", `${data._id}`)
-                // localStorage.setItem("username", `${data.name}`)
-                setValuepassword('')
-                setValuename('')
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-        // 回退
-        navigate(-1)
-    } */
-    // true表示的登陆成功
-    // false表示登录失败，提示账号密码是否错误或提示是否注册
-    // use query编写
-    // 初始化localStorage
-if (localStorage.getItem("longinStates") === null) {
-        const initlonginState = { loginstate: false, }
-        const initlonginStateData = JSON.stringify(initlonginState)
-        localStorage.setItem("longinState", initlonginStateData)
-    }  
-    const queryClient = useQueryClient()
-    const mutation = useMutation({
-        mutationFn: data => {
-            return axios.post('http://127.0.0.1:4000/login', data)
-        },
-        mutationKey: 'longin',
-    })
-    const sumbit_user_password_demo = (e) => {
-        mutation.mutate({
-            data: {
-                name: valuename,
-                password: valuepassword
             }
-        }, {
-            onSuccess: (data) => {
-
-                // console.log("登录请求");
-                setresponsedata(data.data)
-                const userData = JSON.stringify(data.data)
-                localStorage.setItem("longinState", userData)
-                // console.log(data.name);
-                // localStorage.setItem("username", `${data.data.name}`)
-                // setid(data.data._id)
-                getvalue(data.data)
-                setLoading(true)
-                setValuename('')
-                setValuepassword('')
-                /* 跳转后bar的login组件undshow */
-                data.data.loginstate && navigate('/');
-                queryClient.setQueryData('userData', data);
-
-            },
-            onError: (error) => { console.log(error); }
-        })
-
+            )
+                .catch((error) => {
+                    console.log(error);
+                })
+        } else {
+            alert('name or password is null')
+        }
     }
-
-
     return (
         <div className={style.login}>
             {/* 登录页面 */}
@@ -132,15 +74,13 @@ if (localStorage.getItem("longinStates") === null) {
             </input>
             <div className={style.tip}>
                 <input className={style.password} type={showpassword ? 'text' : 'password'} value={valuepassword} onChange={get_formpassword_value} placeholder='密码'></input>
+                {/* 显示密码的图标 */}
                 {showpassword ?
                     <EyeOutlined className={style.EyeOutlined} onClick={showpasswordhandler} /> :
                     <EyeInvisibleOutlined className={style.EyeInvisibleOutlined} onClick={showpasswordhandler} />
                 }
             </div>
-            {responsedata.loginstate === true ? <p>已登录</p> :
-                responsedata.loginstate === false ?
-                    <div>登录失败,账号或密码错误</div> :
-                    responsedata.loginstate === '' ? null : null}
+
             <button className={style.button} onClick={sumbit_user_password_demo}>
                 登录
             </button>

@@ -39,23 +39,6 @@ export default function Routers() {
     // console.log(getid);
     // 获取当前的url 进行url判断等于根目录就不显示Home组件
     const useridone = localStorage.getItem("userid")
-    /* const { refetch } = useQuery('queryname', async () => {
-        
-        const data = await axios.get(`http://127.0.0.1:4000/queryname/${useridone}`)
-        return data
-    },
-        {
-            onSuccess: (data) => {
-
-                 console.log(data); 
-            }
-        },
-        {
-            onError: (error) => {
-                console.log(error);
-            }
-        }
-    ) */
     const Location = useLocation()
     const url = Location.pathname
     const queryClient = useQueryClient()
@@ -64,7 +47,7 @@ export default function Routers() {
         () => axios.get(`http://127.0.0.1:4000/userstate/${loginData._id}`)
         ,
         {
-            enabled: Boolean(loginData.loginstate),
+            enabled: Boolean(false),
         },
         {
             onError: (error) => {
@@ -86,7 +69,6 @@ export default function Routers() {
                     </Route>
                     <Route path='/login' element={<Login  getvalue={getloginId} />}></Route>
                     <Route path='/signup' element={<Signup getvalue={getloginId} />}></Route>
-
                     <Route path='/homepage/:id' element={<Content getid={getuserid} username={username}></Content>}></Route>
                 </Routes>
                 <User></User>

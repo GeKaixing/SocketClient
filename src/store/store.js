@@ -1,12 +1,12 @@
 import { configureStore } from "@reduxjs/toolkit";
-import socketApi from "./storeApi";
-import { socketReducer } from "./storeSlice";
-const store=configureStore({
-    reducer:{
-        socketData:socketReducer,
-        [socketApi.reducerPath]:socketApi.reducer
+import {loginReducer} from "./slice/loginSlice";
+import LoginApi from "./api/LoginApi";
+const store = configureStore({
+    reducer: {
+        loginReducer,
+        [LoginApi.reducerPath]: LoginApi.reducer
     },
-    middleware:getDefaultMiddleware=>
-    getDefaultMiddleware().concat(socketApi.middleware)
+    middleware: getDefaultMiddleware =>
+        getDefaultMiddleware().concat(LoginApi.middleware)
 })
 export default store;
