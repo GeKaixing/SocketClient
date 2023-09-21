@@ -47,6 +47,7 @@ export default function Signup({ getvalue }) {
           dispatch(login({
             name: res.data.dataToSave.name,
             token: res.data.dataToSave.token,
+            d: res.data.dataToSave._id
           }))
           // 设置登录状态
           setsignupstate(res.data.signupstate)

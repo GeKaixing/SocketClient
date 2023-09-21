@@ -1,32 +1,5 @@
-/* .bar {
-    position: fixed;
-    overflow: auto;
-    top: 0;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    border-right: 1px solid #000000;
-    width: 21rem;
-    height: 100%;
-    overflow: auto;
-    height: 100vh;
-    position: fixed;
-    left: 0px;
-    top: 0px;
-    bottom: 0px;
-    flex: 0 0 200px;
-    max-width: 200px;
-    min-width: 200px;
-    width: 200px;
-}
-*/
-
 .bar{
     position: fixed;
-   
     height: 100%;
     width: 200px;
     overflow-x: hidden;

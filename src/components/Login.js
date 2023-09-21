@@ -5,7 +5,7 @@ import style from './Login.module.css'
 import { useLoginMutation } from '../store/api/LoginApi'
 import { useDispatch, useSelector } from 'react-redux'
 import { login } from '../store/slice/loginSlice'
-export default function Login({ getvalue }) {
+export default function Login() {
     // 设置账号init
     const [valuename, setValuename] = useState('')
     // 设置密码init
@@ -43,11 +43,13 @@ export default function Login({ getvalue }) {
                 name: valuename,
                 password: valuepassword
             }).then(res => {
+                console.log(res.data);
                 if (res.data?.loginstate) {
                     // 把状态设置到loginSlice中并且持久化数据
                     dispatch(login({
                         token: res.data.token,
                         name: res.data.name,
+                        id: res.data._id
                     }))
                     // 登录成功后把账号和密码设置为空
                     setValuename('');
