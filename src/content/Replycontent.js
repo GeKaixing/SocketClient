@@ -27,7 +27,7 @@ export default function Replycontent({ replycontent, id }) {
                             {item.reply}
                         </div>
                         {
-                            item.userid == id ?
+                            item.userid === id ?
                                 <button onClick={() => deletreplyhandler(item._id)}>删除</button> : null
                         }
                     </div>)
