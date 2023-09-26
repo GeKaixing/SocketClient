@@ -36,6 +36,7 @@ const loginSlice = createSlice({
             // 移除本地储存
             localStorage.removeItem('token')
             localStorage.removeItem('name')
+            localStorage.removeItem('id')
         }
     }
 })

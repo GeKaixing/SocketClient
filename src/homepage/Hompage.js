@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { useQuery } from 'react-query'
 import { useLocation } from 'react-router-dom';
 import Articledata from './Articledata'
@@ -18,21 +18,12 @@ export default function Hompage({ userarticles }) {
       console.log(error);
     }
   })
-  /*   useEffect(() => {
-      const getarticles = async () => {
-        try {
-          const response = await axios.get('http://127.0.0.1:4000/getarticles')
-          setload(true)
-          setarticles(response.data)
-        } catch (e) {
-          setload(false)
-          console.log(e);
-        }
-      }
-      getarticles()
-    }, []) */
+  console.log(articles);
+
+  
   return (
     <div >
+      {/* pathname根据是否再/ route判断形式什么组件，当不在"/"显示用户发布的POST */}
       {
         pathname === '/' ?
           articles.map(function (item, index) {
@@ -46,7 +37,7 @@ export default function Hompage({ userarticles }) {
                 likes={item.likes}
                 favorites={item.favorites}
                 isSuccess={isSuccess}
-                 /* contenttheme={item.contenttheme} */
+              /* contenttheme={item.contenttheme} */
               >
               </Articledata>
             );
@@ -56,13 +47,13 @@ export default function Hompage({ userarticles }) {
             return (
               <Articledata
                 key={item._id}
+                id={item._id}
                 name={item.name}
-                contenttheme={item.contenttheme}
                 content={item.content}
                 comments={item.comments}
-                like={item.like}
-                isSuccess={isSuccess}
-                id={item._id} >
+                likes={item.likes}
+                favorites={item.favorites}
+                isSuccess={isSuccess} >
               </Articledata>
             );
           }

@@ -5,24 +5,16 @@
 }
 
 .message {
-    /*   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 500px;
-    background-color: brown;
-    margin-bottom: 20px;
-    margin-left: 200px;
-     */
     display: flex;
     flex-direction: row;
+    justify-content: center;
     background-color: brown;
     width: 600px;
 }
 
-/* 
 .messagebox {
-    
-} */
+    width: 100%;
+}
 
 .thisshowname {
     padding-top: 10px;

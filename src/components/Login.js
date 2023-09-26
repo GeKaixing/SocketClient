@@ -43,7 +43,6 @@ export default function Login() {
                 name: valuename,
                 password: valuepassword
             }).then(res => {
-                console.log(res.data);
                 if (res.data?.loginstate) {
                     // 把状态设置到loginSlice中并且持久化数据
                     dispatch(login({
@@ -55,7 +54,7 @@ export default function Login() {
                     setValuename('');
                     setValuepassword('');
                     // 登录成功后重定向主页
-                    navigate('/', { replace: true })
+                    navigate(-1, { replace: true })
                 } else {
                     alert('密码或账号错误')
                 }

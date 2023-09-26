@@ -13,9 +13,7 @@ import axios from 'axios'
 import UserHomePage from '../UserHomePage/UserHomePage'
 import style from "./Routers.module.css"
 import User from '../components/User'
-import usert_text from '../store/Usert_text'
 import Portal from '../homepage/Portal'
-import Demo from '../UserHomePage/Demo'
 import MainMenu from '../components/MainMenu'
 export default function Routers() {
     // 获取当前的url 进行url判断等于根目录就不显示Home组件

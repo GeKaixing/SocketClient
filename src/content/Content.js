@@ -1,35 +1,58 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useQuery } from 'react-query';
-import { useParams, Link } from 'react-router-dom'
+import { useQuery, useQueryClient } from 'react-query';
+import { useParams, Link, useLocation  } from 'react-router-dom'
 import Comment from './Comment';
 import style from './Content.module.css'
-import User from '.././components/User'
-import { LikeFilled, StarFilled, RocketFilled, MessageFilled } from '@ant-design/icons';
-export default function Content({ getid, username }) {
+import { LikeFilled, StarFilled, RocketFilled } from '@ant-design/icons';
+import useQueryUpdataArticleLike from '../hooks/useQueryUpdataArticleLike'
+import useQueryUpdataArticleFavorite from '../hooks/useQueryUpdataArticleFavorite'
+export default function Content() {
+    // useQuery
+    const queryClient = useQueryClient()
+    // 获取文章数据的useState
     const [contentdata, setcontent] = useState({})
-    const [getcomment, setgetcomment] = useState('')
-    const params = useParams()
-    const paramsid = params.id
-    const getcommenthandle = (value) => {
-        setgetcomment(value)
-    }
-    const querydata = useQuery(`${paramsid}`, async () => {
-        const data = await axios.get(`http://127.0.0.1:4000/getonearticle/${paramsid}`)
+    //获取当前路由
+    const {pathname}  = useLocation()
+    // 获取页面路由的id
+    const { id } = useParams()
+    // 自定义hook 修改点赞
+    const { linke_mutation } = useQueryUpdataArticleLike(id)
+    // 自定义hook 修改收藏
+    const { favorite_mutation } = useQueryUpdataArticleFavorite(id)
+
+
+    // 获取当前文章详情页的数据
+    const querydata = useQuery('conten', async () => {
+        const data = await axios.get(`http://127.0.0.1:4000/getonearticle/${id}`)
         return data
     },
-        {
-            onSuccess: (data) => {
-                setcontent(data.data);
-            }
-        },
-        {
-            onError: (error) => {
-                console.log(error)
-            }
-        }
+        { onSuccess: (data) => { setcontent(data.data[0]); } },
+        { onError: (error) => { console.log(error) } }
     )
-    console.log(contentdata);
+    // 点赞按钮
+    const likehandle = (event) => {
+        event.stopPropagation()
+        linke_mutation()
+        queryClient.invalidateQueries("conten")
+    }
+
+    // 更新按钮
+    const upfavoritehandler = (event) => {
+        event.stopPropagation()
+        favorite_mutation()
+        queryClient.invalidateQueries("conten")
+    }
+    // 分享按钮
+    const sharehandler = () => {
+        const at_present_pathname = `http://localhost:3000${pathname}`
+        navigator.clipboard.writeText(at_present_pathname).then(() => {
+            console.log("复制成功");
+        }, (error) => {
+            console.log("复制失败：", error);
+        });
+
+    }
     return (
         <div className={style.commentpage}>
             <div className={style.message}>
@@ -43,19 +66,19 @@ export default function Content({ getid, username }) {
                     <div className={style.thisshowcontent}>
                         {contentdata.content}
                     </div>
-                    <div className={style.thisshowbottom}>
-                        <div>
-                            <Link className={style.whitelike}/* id='like'  onClick={first ? likehandle : offlikehandle} */><LikeFilled />{contentdata.like}</Link>
+                    <div className={style.thisshowbottom} onClick={likehandle}>
+                        <div >
+                            <Link className={style.whitelike} ><LikeFilled />{contentdata.likes}</Link>
                         </div>
-                        <div className={style.star}>
-                            <StarFilled />收藏
+                        <div className={style.star} onClick={upfavoritehandler}>
+                            <StarFilled />{contentdata.favorites}
                         </div>
-                        <div className={style.share}>
+                        <div className={style.share} onClick={sharehandler}>
                             <RocketFilled />
                             分享
                         </div>
                     </div>
-                    <Comment id={params.id} getid={getid} username={username} getcommenthandle={getcommenthandle}></Comment>
+                    <Comment ></Comment>
                     {/*  <input placeholder='评论'>
                 </input> */}
                 </div>

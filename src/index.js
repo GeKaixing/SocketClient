@@ -19,6 +19,7 @@ import Test_react_query from './Test_react_query';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 // 在入口文件配置usequery
 
+//查询/mutation/修改使用react-query 
 const queryClient = new QueryClient()
 document.documentElement.style.fontSize = 100 / 750 + 'vm';
 root.render(

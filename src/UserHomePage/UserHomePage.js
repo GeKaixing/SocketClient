@@ -5,15 +5,22 @@ import Userlikes from './Userlikes'
 import Userfavorite from './Userfavorite'
 import { useParams, useNavigate } from 'react-router-dom'
 import test from '../test.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { logout } from '../store/slice/loginSlice'
 export default function UserHomePage() {
+  /* 头像 名字 赞那些文章    *//*         用户的详情页        */
 
+  // 选择组件 用于切换页面使用
   const [seletcpage, setseletcpage] = useState('')
-  // 查询用户信息
-  /* 
-    头像
-    名字
-    赞那些文章
-       */
+  // redux 派发钩子函数
+  const dispatch = useDispatch()
+  // redux useSelector 派发钩子函数 用于获取loginReducer切片的默认值
+  const { name } = useSelector(state => state.loginReducer)
+  // router 钩子函数 用户函数式跳转页面
+  const Navigate = useNavigate()
+
+
+  // 切换组件函数 用switch实现
   const rendercompents = () => {
     switch (seletcpage) {
       case "Userarticle": return <Userarticle></Userarticle>
@@ -22,13 +29,12 @@ export default function UserHomePage() {
       default: return <Userarticle></Userarticle>
     }
   }
-  const params = useParams()
-  const Navigate = useNavigate()
-  const initlonginState = { loginstate: false, }
-  const initlonginStateData = JSON.stringify(initlonginState)
+  // 注销账号的函数
   const closeAnAccountHanlder = () => {
-    localStorage.setItem('longinState', initlonginStateData)
-    Navigate('/')
+    //loginSlice的logout方法
+    dispatch(logout())
+    // 重定向 上一个的路由
+    Navigate("/", { replace: true })
   }
   return (
     <div className={style.userhomepage}>
@@ -36,8 +42,8 @@ export default function UserHomePage() {
         <div className={style.headimg}>
           <img src={test} className={style.img}></img>
         </div>
-        <p className={style.name}> {localStorage.getItem('username')}</p>
-        <div onClick={closeAnAccountHanlder}>注销</div>
+        <p className={style.name}> {name}</p>
+        <div  className={style.loginout} onClick={closeAnAccountHanlder}>注销</div>
       </div>
       <div className={style.userhistory}>
         <div onClick={() => { setseletcpage('Userarticle') }}>文章</div>
