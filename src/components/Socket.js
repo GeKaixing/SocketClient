@@ -1,32 +1,24 @@
-import React, { useEffect, useRef, useState, useContext } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import socketIO from 'socket.io-client'
 import { useNavigate } from 'react-router-dom'
 import style from './Socket.module.css'
 import axios from 'axios'
-import usert_text from '../store/Usert_text'
 // import { useGetSocketUserByIdQuery } from '../store/storeApi'
 // import { getName } from '../store/storeSlice'
-// import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 const socket = socketIO.connect('http://localhost:4000', { autoConnect: false })
-export default function Socket({ getid, usernames }) {
-    const { getuser } = useContext(usert_text)
-    // const dispatch = useDispatch()
-    // const socketname = useSelector(state => state.socketData)
-    // console.log(socketname);
-    console.log(socket);
+export default function Socket() {
+    const { name, id, loginState } = useSelector(state => state.loginReducer);
     const [data, setdata] = useState('')
     const [messages, setMessages] = useState([])
     const [username, setname] = useState()
     const [isLoading, setLoading] = useState()
     const [connet, setconnet] = useState(false)
-    /*     const demo =document.getElementById('demoaa');
-         console.log(demo.scrollTop ); */
     const ref = useRef(null)
-    // const { data: dataname, isSuccess } = useGetSocketUserByIdQuery(socketname._id._id)
     const navigate = useNavigate()
     useEffect(() => {
         setLoading(false)
-        axios.get(`http://127.0.0.1:4000/queryone/${getid}`)
+        axios.get(`http://127.0.0.1:4000/queryone/${id}`)
             .then(
                 (res) => {
                     setname(res.data)
@@ -36,7 +28,7 @@ export default function Socket({ getid, usernames }) {
             .catch((e) => {
                 console.log(e);
             })
-    }, [getid])
+    }, [id])
 
     const connect = function () {
         console.log(socket);
@@ -62,15 +54,6 @@ export default function Socket({ getid, usernames }) {
         }
         setdata('')
     }
-    /*   const home = function () {
-          navigate('/')
-      }
-      const about = function () {
-          navigate('/about')
-      }
-      const login = function () {
-          navigate('/login')
-      } */
     const getvalue = function (e) {
         if (connet) { alert('你已断开连接') }
         else {
@@ -79,10 +62,9 @@ export default function Socket({ getid, usernames }) {
     }
     console.log(messages);
     useEffect(() => {
-        if (getid) {
+        if (id) {
             ref.current.scrollTop = ref.current.scrollHeight
         }
-
         const getmessages = function (value) {
             setMessages(previous => [...previous, value]);
         }
@@ -90,10 +72,10 @@ export default function Socket({ getid, usernames }) {
         return () => {
             socket.off('sendmessage', getmessages);
         }
-    }, [messages, ref, getid])
+    }, [messages, ref, id])
     return (
         <>
-            {getuser.loginstate ?
+            {loginState ?
                 <div className={style.socketpage} >
                     {/* 聊天界面 */}
                     <div className={style.chatborder} ref={ref} >
@@ -126,7 +108,7 @@ export default function Socket({ getid, usernames }) {
                         </button>
                         {isLoading ?
                             <div>
-                                {usernames || username.name}
+                                {name || username.name}
                             </div> :
                             null
                         }

@@ -1,8 +1,9 @@
-import React, { useEffect,useState } from 'react'
+import React from 'react'
 import { Outlet, Navigate } from "react-router-dom"
+import { useSelector } from 'react-redux'
 export default function Protected({ getid }) {
-        /* const loginData = JSON.parse(localStorage.getItem("longinState")) */
+    const { loginState } = useSelector(state => state.loginReducer);
     return (
-        /* loginData.loginstate */true? <Outlet /> : <Navigate to="/login" replace={true} />
+        loginState ? <Outlet /> : <Navigate to="/login" replace={true} />
     )
 }

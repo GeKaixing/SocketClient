@@ -12,6 +12,11 @@ margin-left: 10px;
     display: flex;
     justify-content: center;
 }
+.replybutton{
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+}
 .like{
     margin-left: 10px;
 }
