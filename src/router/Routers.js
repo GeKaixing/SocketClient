@@ -36,7 +36,7 @@ export default function Routers() {
     )
     return (
         <div className={style.layout}>
-            <MainMenu></MainMenu>
+            <MainMenu ></MainMenu>
             <Routes>
                 <Route path='/' element={<Home />}></Route>
                 <Route element={<Protected />}>
