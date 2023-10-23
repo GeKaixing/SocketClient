@@ -13,6 +13,12 @@
     width: 200px;
 }
 
+@media (max-width:1000px) {
+    .user {
+        display: none;
+    }
+    
+}
 .userbox {
     cursor: pointer;
     display: flex;
